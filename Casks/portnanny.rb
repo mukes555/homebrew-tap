@@ -1,10 +1,10 @@
-# Homebrew cask for PortNanny, pinned to one release. The release workflow
-# renders this template (version, sha256) and pushes it to the tap when a
-# HOMEBREW_TAP_TOKEN secret is configured; until then the tap keeps the
-# `version :latest` form in portnanny.rb.
+# Homebrew cask for PortNanny, pinned to one release. Rendered with the
+# version and the zip's sha256 on every release: by the release workflow
+# when a HOMEBREW_TAP_TOKEN secret is configured, by hand otherwise (see
+# RELEASING.md), then pushed to mukes555/homebrew-tap as Casks/portnanny.rb.
 cask "portnanny" do
-  version "2.1.1"
-  sha256 "0243f65a86908439ba2766a60757cd99a1cbf8fe23f5a1b594f0f208fcf0ce1a"
+  version "2.2.0"
+  sha256 "d1820ede10a62dfa9367aacc40d64fd433ab74546e8e3a02f0b5db984b775ca2"
 
   url "https://github.com/mukes555/PortNanny/releases/download/v#{version}/PortNanny.app.zip"
   name "PortNanny"
