@@ -3,8 +3,8 @@
 # HOMEBREW_TAP_TOKEN secret is configured; until then the tap keeps the
 # `version :latest` form in portnanny.rb.
 cask "portnanny" do
-  version "2.1.0"
-  sha256 "9a43108ce6ffd2393303cd1412b1d97774ce3853d080482ebbeec0e37d3d8a2a"
+  version "2.1.1"
+  sha256 "0243f65a86908439ba2766a60757cd99a1cbf8fe23f5a1b594f0f208fcf0ce1a"
 
   url "https://github.com/mukes555/PortNanny/releases/download/v#{version}/PortNanny.app.zip"
   name "PortNanny"
