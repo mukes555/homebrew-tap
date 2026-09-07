@@ -1,31 +1,33 @@
-# typed: strict
-# frozen_string_literal: true
-
-# Homebrew cask for PortKilla.
-#
-# To publish: create a GitHub repo named `homebrew-tap` under your account,
-# copy this file to `Casks/portkilla.rb` in it, then users install with:
-#
-#   brew tap mukes555/tap
-#   brew install --cask portkilla
-#
-# `version :latest` + `sha256 :no_check` means the cask always pulls the
-# newest GitHub release (the release workflow uploads PortKilla.app.zip with
-# a stable name), so the tap never needs updating per release.
+# Homebrew cask for PortKilla, pinned to one release. The release workflow
+# renders this template (version, sha256) and pushes it to the tap when a
+# HOMEBREW_TAP_TOKEN secret is configured; until then the tap keeps the
+# `version :latest` form in portkilla.rb.
 cask "portkilla" do
-  version :latest
-  sha256 :no_check
+  version "2.0.0"
+  sha256 "ab712a98f8e183ad822bcd2b3a96c389ac0f5f32489324eb361ffeb0f5dd8cc0"
 
-  url "https://github.com/mukes555/PortKilla/releases/latest/download/PortKilla.app.zip"
+  url "https://github.com/mukes555/PortKilla/releases/download/v#{version}/PortKilla.app.zip"
   name "PortKilla"
   desc "Menu bar port manager — see and kill processes occupying ports"
   homepage "https://github.com/mukes555/PortKilla"
 
-  depends_on macos: :ventura
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  depends_on macos: ">= :ventura"
 
   app "PortKilla.app"
-  # Puts `portkilla` on PATH so the CLI (list / kill / whoami) works from any shell.
-  binary "#{appdir}/PortKilla.app/Contents/MacOS/PortKilla", target: "portkilla"
+  # Puts `portkilla` on PATH: the standalone CLI bundled beside the app binary
+  # (no AppKit, so `portkilla mcp` stays small when an agent keeps one running).
+  binary "#{appdir}/PortKilla.app/Contents/Helpers/portkilla"
+
+  # `brew upgrade` replaces the bundle; quit the running copy first so the
+  # menu-bar icon isn't left running from a deleted bundle, and drop the
+  # login-item registration that pointed at it.
+  uninstall quit:       "com.mukes555.PortKilla",
+            login_item: "PortKilla"
 
   # The app is ad-hoc signed (no Apple Developer account), so Gatekeeper
   # quarantine must be stripped for it to launch without a scary dialog.
@@ -35,16 +37,10 @@ cask "portkilla" do
                    sudo: false
   end
 
-  # `brew reinstall` replaces the bundle; quit the running copy first so the
-  # menu-bar icon isn't left running from a deleted bundle, and drop the
-  # login-item registration that pointed at it.
-  uninstall quit:       "com.mukes555.PortKilla",
-            login_item: "PortKilla"
-
   zap trash: [
-    "~/Library/Caches/com.mukes555.PortKilla",
-    "~/Library/HTTPStorages/com.mukes555.PortKilla",
     "~/Library/Preferences/com.mukes555.PortKilla.plist",
     "~/Library/Saved Application State/com.mukes555.PortKilla.savedState",
+    "~/Library/Caches/com.mukes555.PortKilla",
+    "~/Library/HTTPStorages/com.mukes555.PortKilla",
   ]
 end
