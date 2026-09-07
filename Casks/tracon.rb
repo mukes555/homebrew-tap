@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-# Homebrew cask for Tracon, pinned to one release. Tracon's release workflow
-# renders this from packaging/homebrew/tracon.rb.tmpl (version, checksums)
-# and pushes it here when a HOMEBREW_TAP_TOKEN secret is configured.
+# Homebrew cask for Tracon, pinned to one release. The tap workflow renders
+# this template (version, checksums) when a release is published and pushes
+# it to mukes555/homebrew-tap, so `brew upgrade --cask tracon` sees it.
 cask "tracon" do
-  version "0.3.0"
+  version "0.4.0"
 
   on_arm do
-    sha256 "188449226c17581296489cbac5f38ec7d4e737423d2e521b805cf6adcec438d4"
+    sha256 "b756d8a92ae0352092e49eaf66d4fbba7e05fcc7fc665d4a21ff77a7da3a5f13"
 
     url "https://github.com/mukes555/tracon/releases/download/v#{version}/Tracon_#{version}_aarch64.dmg"
   end
   on_intel do
-    sha256 "39d441942c97716b5b15cb54e0a89dc40b45a96470e549916640c60ab3bbb706"
+    sha256 "755590e02ed623b5e836a173767022113d95d7af86d8b361556ac4ed955b469b"
 
     url "https://github.com/mukes555/tracon/releases/download/v#{version}/Tracon_#{version}_x64.dmg"
   end
@@ -43,6 +43,7 @@ cask "tracon" do
   # The recorded audit database lives in Application Support; zap removes it
   # along with caches and window state.
   zap trash: [
+    "~/.tracon",
     "~/Library/Application Support/dev.tracon.desktop",
     "~/Library/Caches/dev.tracon.desktop",
     "~/Library/Preferences/dev.tracon.desktop.plist",
