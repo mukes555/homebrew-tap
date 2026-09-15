@@ -1,12 +1,28 @@
 # homebrew-tap
 
-Homebrew tap for two macOS apps:
+Homebrew tap for three macOS apps:
 
 - [PortNanny](https://github.com/mukes555/PortNanny), a native menu bar port
   manager that knows whose server it is. It was called PortKilla until 2.1.
 - [Tracon](https://github.com/mukes555/tracon), a flight recorder for AI
   coding agents: every command, file edit, and package install, with the
   dangerous ones flagged for review.
+- [DockNanny](https://github.com/mukes555/docknanny), a dock on every
+  display: the pins, running apps, and Trash of the system Dock, mirrored
+  on each screen, keeping windows out from under it.
+
+## Install DockNanny
+
+```bash
+brew tap mukes555/tap
+brew install --cask docknanny
+```
+
+The cask is pinned to each release, so `brew upgrade --cask docknanny` sees
+new versions. The app is ad hoc signed; the cask strips the Gatekeeper
+quarantine so it opens cleanly, which Homebrew may ask you to trust once
+with `brew trust mukes555/tap`. Requires macOS 26 (Tahoe) on Apple Silicon.
+The Accessibility grant made once in System Settings survives upgrades.
 
 ## Install Tracon
 
