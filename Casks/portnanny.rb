@@ -3,8 +3,8 @@
 # when a HOMEBREW_TAP_TOKEN secret is configured, by hand otherwise (see
 # RELEASING.md), then pushed to mukes555/homebrew-tap as Casks/portnanny.rb.
 cask "portnanny" do
-  version "2.4.1"
-  sha256 "c224cde7955aba845c4c3136409f835826e9293bf41f4ecf7d082b43ee822603"
+  version "2.4.2"
+  sha256 "cf764bc4d02a7a4c9db1316d732bcae3be67bf9fa088b18f6553b01c0e59a5f1"
 
   url "https://github.com/mukes555/PortNanny/releases/download/v#{version}/PortNanny.app.zip"
   name "PortNanny"
