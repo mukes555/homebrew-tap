@@ -5,8 +5,8 @@
 # when a HOMEBREW_TAP_TOKEN secret is configured, by hand otherwise (see
 # RELEASING.md), then pushed to mukes555/homebrew-tap as Casks/docknanny.rb.
 cask "docknanny" do
-  version "0.5.1"
-  sha256 "5237e3409bf9b420d6aa7a74a824cfd29ab9a0e61fd584ad4b5770d38c8b67f7"
+  version "0.5.2"
+  sha256 "87d42dc98bed9d00df35f087ca4e7b986aac58139815f9ee7bef568be410a907"
 
   url "https://github.com/mukes555/docknanny/releases/download/v#{version}/DockNanny-#{version}.dmg"
   name "DockNanny"
